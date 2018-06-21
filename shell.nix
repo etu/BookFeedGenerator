@@ -8,6 +8,7 @@ stdenv.mkDerivation rec {
   };
   buildInputs = [
     python3
+    python3Packages.feedgen
 
     # Testing things
     python3Packages.epc
