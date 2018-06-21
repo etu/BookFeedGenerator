@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from feedgen.feed import FeedGenerator
 import argparse
 
 
@@ -19,8 +20,25 @@ def main():
 
     args = parser.parse_args()
 
-    print(args.inputs)
-    print(args.output)
+    generateFeed(args.inputs, args.output)
+
+
+def generateFeed(inputFiles, outputFile):
+    fg = FeedGenerator()
+    fg.load_extension('podcast')
+    fg.title(inputFiles[0])
+    fg.link(href='https://example.com/', rel='alternate')
+    fg.description(inputFiles[0])
+
+    for inputFile in inputFiles:
+        fe = fg.add_entry()
+        fe.id(inputFile)
+        fe.title(inputFile)
+        fe.description(inputFile)
+        fe.enclosure(inputFile, 0, 'audio/mpeg')
+
+    fg.rss_str(pretty=True)
+    fg.rss_file(outputFile)
 
 
 if __name__ == '__main__':
