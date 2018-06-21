@@ -18,16 +18,19 @@ def main():
     parser.add_argument('-o', '--output', action='store',
                         help='output file, use same dir as inputs live in.')
 
+    parser.add_argument('-b', '--base_url', action='store',
+                        help='Base URL for files to build complete links.')
+
     args = parser.parse_args()
 
-    generateFeed(args.inputs, args.output)
+    generateFeed(args.inputs, args.output, args.base_url)
 
 
-def generateFeed(inputFiles, outputFile):
+def generateFeed(inputFiles, outputFile, baseUrl):
     fg = FeedGenerator()
     fg.load_extension('podcast')
     fg.title(inputFiles[0])
-    fg.link(href='https://example.com/', rel='alternate')
+    fg.link(href=baseUrl, rel='alternate')
     fg.description(inputFiles[0])
 
     for inputFile in inputFiles:
@@ -35,7 +38,7 @@ def generateFeed(inputFiles, outputFile):
         fe.id(inputFile)
         fe.title(inputFile)
         fe.description(inputFile)
-        fe.enclosure(inputFile, 0, 'audio/mpeg')
+        fe.enclosure(baseUrl + inputFile, 0, 'audio/mpeg')
 
     fg.rss_str(pretty=True)
     fg.rss_file(outputFile)

@@ -13,7 +13,7 @@ How to use this:
 $ cd to/your/public/directory
 
 # And then generate the XML file
-$ /path/to/main.py -i *mp3 -o feed.xml
+$ /path/to/main.py -i *mp3 -o feed.xml -b http://example.com/your/base/url/
 #+END_SRC
 
 Then just take your public URL and append =/feed.xml= to the end and
