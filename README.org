@@ -1,1 +1,32 @@
 * BookFeedGenerator
+This is a very simple and crude way to take a directory of audiobook
+files. Probably only works with mp3's. And then generate an XML file
+that you can open with a Podcast player to listen to this audiobook.
+
+This is quite handy because you can keep track of playback and which
+files that you have played quite good in most podcast players.
+
+How to use this:
+#+BEGIN_SRC
+# First, put your audiobook in a public directory somewhere
+# Then:
+$ cd to/your/public/directory
+
+# And then generate the XML file
+$ /path/to/main.py -i *mp3 -o feed.xml
+#+END_SRC
+
+Then just take your public URL and append =/feed.xml= to the end and
+put the file into your podcast player and enjoy.
+
+** Dependencies
+As documented in =shell.nix=, this project depends on python 3 and as
+well https://pypi.org/project/feedgen/.
+
+** Notes
+There's a lot of room for improvement on this project. For instance,
+one could have a flag to add a proper name for the feed. And so
+on. But I've probably spent more time on writing this readme than the
+actual code at this point so I'll consider both finished as of now.
+
+But pull requests are welcome.
